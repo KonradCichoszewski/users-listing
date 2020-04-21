@@ -4,7 +4,7 @@ import User from './User';
 function UsersListing(props) {
   return (
     <div>
-      {props.users.map(user => <User user={user} key={user.name} />)}
+      {props.users.map(user => <User user={user} key={user.id} />)}
     </div>
   )
 }

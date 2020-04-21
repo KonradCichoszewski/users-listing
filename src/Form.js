@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class Form extends React.Component {
   constructor(props) {
@@ -23,15 +24,21 @@ class Form extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    axios.post(`https://5e9f5b6e11b078001679c795.mockapi.io/users`, this.state)
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
     this.props.formSubmit(this.state);
     this.setState(this.getInitialState());
     event.target.reset();
+    alert("User added!");
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label> Name:
+        <label className='label'> Name:
           <input type="text" name="name" value={this.state.value} onChange={this.handleChange} />
         </label><br />
         <label> Last name:
@@ -44,7 +51,7 @@ class Form extends React.Component {
           Choose your department:
           <select name="department" value={this.state.department} onChange={this.handleChange}>
             <option value="IT">IT</option>
-            <option value="Humand Resources">Human Resources</option>
+            <option value="Human Resources">Human Resources</option>
             <option value="Management">Management</option>
             <option value="Public Relations">Public Relations</option>
           </select>

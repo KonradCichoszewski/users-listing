@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-
+import axios from 'axios';
 
 import NavBar from './NavBar';
 import UsersListing from './UsersListing';
@@ -11,15 +11,16 @@ class App extends React.Component {
     super(props);
     this.formSubmit = this.formSubmit.bind(this)
     this.state = {
-      users: [
-        {
-          name: 'David',
-          lastName: 'Scaffold',
-          age: 32,
-          department: 'Human Resources'
-        }
-      ]
+      users: []
     }
+  }
+
+  componentDidMount() {
+    axios.get(`https://5e9f5b6e11b078001679c795.mockapi.io/users`)
+      .then(res => {
+        const users = res.data;
+        this.setState({ users });
+      })
   }
 
   formSubmit(user) {

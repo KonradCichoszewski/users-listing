@@ -9,17 +9,22 @@ import Form from './Form';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = [
-      {
-        name: 'David',
-        lastName: 'Scaffold',
-        age: 32
-      },
-      {
-        name: 'Ann',
-        age: 23
-      }
-    ];
+    this.formSubmit = this.formSubmit.bind(this)
+    this.state = {
+      users: [
+        {
+          name: 'David',
+          lastName: 'Scaffold',
+          age: 32
+        }
+      ]
+    }
+  }
+
+  formSubmit(user) {
+    this.setState({
+      users: [...this.state.users, user]
+    })
   }
 
   render() {
@@ -28,9 +33,14 @@ class App extends React.Component {
         <NavBar />
         <Route
           exact path="/"
-          render={(props) => <UsersListing {...props} users={this.state} />}
+          render={(props) => <UsersListing {...props}
+            users={this.state.users} />}
         />
-        <Route path="/form" component={Form} />
+        <Route
+          path="/form"
+          render={(props) => <Form {...props}
+            formSubmit={this.formSubmit} />}
+        />
       </div>
     );
   }

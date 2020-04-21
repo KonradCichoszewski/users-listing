@@ -15,7 +15,8 @@ class App extends React.Component {
         {
           name: 'David',
           lastName: 'Scaffold',
-          age: 32
+          age: 32,
+          department: 'Human Resources'
         }
       ]
     }

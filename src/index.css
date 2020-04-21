@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.userTile{
+  background-color: #ebebeb;
+  padding: 5px 25px;
+  border-radius: 10px;
+  width: 300px;
+  margin: 10px;
+}
